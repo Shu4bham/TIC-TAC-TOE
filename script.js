@@ -74,7 +74,8 @@ function gameOver(draw) {
   } else {
     text.innerText = "Player " + currTurn.toUpperCase() + " Wins!";
   }
-  document.querySelector(".finish").classList.add("dark");
+  //   document.querySelector(".finish").classList.add("dark");
+  document.querySelector(".finish").classList.add("celebrate");
 }
 
 function changeTurn() {
@@ -92,3 +93,19 @@ function changeBoard() {
   currTurn == "x" ? board.classList.remove("o") : board.classList.remove("x");
   board.classList.add(currTurn);
 }
+
+function resetBoard() {
+    cells.forEach((element) => {
+      element.innerHTML = "";
+      element.classList.remove("x", "o");
+    });
+    document.querySelector(".finish").classList.remove("celebrate"); // Remove the "celebrate" class to hide the victory celebration animation
+  }
+
+  cells.forEach((element) => {
+    element.addEventListener("click", doThis, { once: true });
+  });
+  
+  restart.addEventListener("click", (e) => {
+    resetBoard(); // Reset the board for a new game
+  });

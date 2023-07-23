@@ -7,7 +7,7 @@
   body {
     height: 100vh;
     margin: 0px;
-    background: -webkit-linear-gradient(135deg, #fff6b7 10%, #f6416c 100%);
+    background: -webkit-linear-gradient(135deg, #76714c 10%, #f6416c 100%);
     font-size: 100px;
     font-family: cursive;
     display: flex;
@@ -37,10 +37,6 @@
   .board {
     width: 400px;
     height: 400px;
-    /* But this takes this element out of html flow. So don't use it.
-    position: absolute;
-    inset: 0;
-    margin: auto; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
@@ -88,6 +84,8 @@
   .finish {
     display: none;
     position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
   }
   
   .message {
@@ -99,9 +97,8 @@
     width: 500px;
     height: 200px;
     border-radius: 30px;
-    background-color: rgb(243, 241, 190);
+    background-color: rgb(230, 226, 104);
     box-shadow: 6px 7px 42px 0px rgba(0, 0, 0, 0.9);
-    /* color: orangered; */
     font-weight: bold;
     text-shadow: 1px 1px 3px rgba(82, 80, 80, 0.473);
   }
@@ -133,5 +130,43 @@
     box-shadow: inset 1px 1px 5px 1px rgba(158, 157, 157, 0.356),
       inset 1px 1px 5px 1px rgba(245, 244, 244, 0.5);
     font-size: 18px;
+  }
+.finish.celebrate {
+    display: flex;
+    opacity: 1;
+    animation: celebrateAnimation 2s ease-in-out;
+  }
+  
+  @keyframes celebrateAnimation {
+    0% {
+      transform: scale(0.2);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .finish.celebrate-draw {
+    display: flex;
+    opacity: 1;
+    animation: celebrateDrawAnimation 2s ease-in-out;
+  }
+  
+  @keyframes celebrateDrawAnimation {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    25% {
+      transform: rotate(-15deg);
+    }
+    50% {
+      transform: rotate(15deg);
+    }
+    75% {
+      transform: rotate(-15deg);
+    }
   }
   
